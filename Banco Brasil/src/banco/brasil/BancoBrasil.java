@@ -8,6 +8,7 @@ public class BancoBrasil {
         //Instanciando um objeto do tipo contaBancaria e referenciando nas variaveis contaBancaria1 e contaBancaria2\\
         ContaBancaria contaBancaria1 = new ContaBancaria();
         ContaBancaria contaBancaria2 = new ContaBancaria();
+        Usuario user1 = new Usuario();
         /*
         //Atribuindo valores ao objeto 
         contaBancaria1.agencia = "0001";
@@ -30,14 +31,21 @@ public class BancoBrasil {
         contaBancaria1.agencia = scan.next();
         System.out.println("Digite a conta ->");
         contaBancaria1.conta = scan.next();
-        System.out.println("Digite o proprietario ->");
-        contaBancaria1.proprietario = scan.next();
-        System.out.println("Digite o valor de deposito ->");
+        //Construcao e insercao dos daods do usuario
+        System.out.print("\nDados do Usuario");
+        System.out.println("\nDigite o nome do cliente ->");
+        user1.nome = scan.next();
+        System.out.println("Digite o sobrenome do cliente ->\n");
+        user1.sobrenome = scan.next();
+        System.out.println("Digite o telefone do cliente ->\n");
+        user1.telefone = scan.next();
+        contaBancaria1.proprietario = user1;
+        System.out.println("Digite o valor de deposito ->\n");
         contaBancaria1.depositar(scan.nextDouble());
 
         System.out.println(contaBancaria1.agencia + "\n"
                 + contaBancaria1.conta + "\n"
-                + contaBancaria1.proprietario + "\n"
+                + contaBancaria1.proprietario.imprimirInfo()+"\n"
                 + contaBancaria1.consultarSaldo());
 
         System.out.println("\n\nDigite o valor para saque ->");

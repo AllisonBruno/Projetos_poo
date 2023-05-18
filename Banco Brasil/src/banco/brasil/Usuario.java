@@ -4,7 +4,7 @@ package banco.brasil;
 import java.util.Date;
 
 
-public class Usuario2 {
+public class Usuario {
     
     //Imprimir infomracoes dos usuarios
     String nome;
@@ -13,7 +13,7 @@ public class Usuario2 {
     Date dataRegistro = new Date(); 
     
     String imprimirInfo(){
-        return String.format("Nome : %s\n sobrenome: %s\n, Telefone: %s, Data Registro %s", this.nome, this.sobrenome, this.telefone, this.dataRegistro);
+        return String.format("Nome:%s\nsobrenome: %s\nTelefone: %s \nData Registro: %s", this.nome, this.sobrenome, this.telefone, this.dataRegistro);
     
     }
 }
