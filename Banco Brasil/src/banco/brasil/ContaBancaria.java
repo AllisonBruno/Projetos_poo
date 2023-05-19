@@ -2,12 +2,59 @@ package banco.brasil;
 
 public class ContaBancaria {
 
-    String agencia;
-    String conta;
-    double saldo;
-    Usuario proprietario;
+    private String agencia;
+    private String conta;
+    private double saldo;
+    private Usuario proprietario;
 
-    void depositar(double valor) {//Metodo com parametro
+    //Metodo construtor
+    public ContaBancaria() {
+
+    }
+
+    public ContaBancaria(String agencia, String conta, double saldo, Usuario proprietario) {
+        this.agencia = agencia;
+        this.conta = conta;
+        this.saldo = saldo;
+        this.proprietario = proprietario;
+    }
+
+    //Metodos gets
+    public String getAgencia() {
+        return this.agencia;
+    }
+
+    public String getConta() {
+        return this.conta;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    public Usuario getProprietario() {
+        return this.proprietario;
+    }
+
+    //Metodos sets
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+
+    public void setConta(String conta) {
+        this.conta = conta;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setProprietario(Usuario proprietario) {
+        this.proprietario = proprietario;
+    }
+    
+    //Metodo com parametro
+    void depositar(double valor) {
         this.saldo += valor;
     }
 
@@ -19,15 +66,16 @@ public class ContaBancaria {
             System.out.println("Fundo insuficiente para efetuar o saque");
         }
     }
-
-    void transferir(ContaBancaria contabancaria, double valor) {//Metodo com parametro
-        if(valor <= saldo){
+    
+    //Metodo com parametro
+    void transferir(ContaBancaria contabancaria, double valor) {
+        if (valor <= saldo) {
             this.sacar(valor);
             contabancaria.saldo += valor;
-        }else{
+        } else {
             System.out.println("Saldo insuficiente !");
         }
-            
+
     }
 
     String consultarSaldo() {//Metodo sem paramentro
