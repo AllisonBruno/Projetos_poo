@@ -1,5 +1,6 @@
 package banco.brasil;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BancoBrasil {
@@ -55,11 +56,33 @@ public class BancoBrasil {
          */
 
         Scanner scan = new Scanner(System.in);
-        int opcao = 0;
+        int opcao = 0, qtdCadastro = 0;
+        boolean verificador = false;
         Usuario user;
-        Usuario[] users = new Usuario[5];
+        ArrayList<Usuario> users = new ArrayList<>();
+        ArrayList<Gerente> gerentes = new ArrayList<>();
         ContaBancaria conta = new ContaBancaria();
-
+        GerenteRepositorio db_gerente = new GerenteRepositorio();
+        db_gerente.addGerente();
+        
+        gerentes = db_gerente.addGerente();
+        
+        do{
+        System.out.println("Seja bem vindo ao banco brasil");
+        System.out.println("Login:");
+        String login = scan.next();
+        System.out.println("Password: ");
+        String password = scan.next();
+        
+        for(Gerente g : gerentes){
+            if(g.getLogin().equals(login) && g.getPassword().equals(password)){
+                verificador = true;
+            }else{
+                System.out.println("Login ou Senha incorreta !");
+            }
+        }
+        }while(verificador != true);
+        
         while (opcao != 3) {
             System.out.println("**Banco do Brasil***");
             System.out.println("**1- Cadastro de cliente**");
@@ -70,9 +93,11 @@ public class BancoBrasil {
 
             switch (opcao) {
                 case 1:
-                    for (int i = 0; i < 2; i++) {
-                        user = new Usuario();
-                        System.out.println("Cadastro do cliente");
+                    System.out.println("Cadastro de cliente");
+                    System.out.println("Quantidade de cadastros: ");
+                    qtdCadastro = scan.nextInt();
+                    for (int i = 0; i < qtdCadastro; i++) {
+                        user = new Cliente();
                         System.out.println("Nome: ");
                         user.setNome(scan.next());
                         System.out.println("Sobrenome: ");
@@ -80,31 +105,31 @@ public class BancoBrasil {
                         System.out.println("Telefone: ");
                         user.setTelefone(scan.next());
 
-                        users[i] = user;
+                        users.add(user);
                     }
 
                     break;
                 case 2:
-                    
+
                     System.out.println("Agencia: ");
                     conta.setAgencia(scan.next());
                     System.out.println("Cadastro da conta");
                     conta.setConta(scan.next());
                     System.out.println("CLIENTES CADASTRADOS");
 
-                    if (users[0] == null) {
+                    if (users.size() == 0) {
                         System.out.println("Vetor vazio");
                     } else {
 
-                        for (int i = 0; i < 2; i++) {
-                            System.out.printf("%d - %s %s \n", i +1, users[i].getNome(), users[i].getSobrenome());
+                        for (int i = 0; i < qtdCadastro; i++) {
+                            System.out.printf("%d - %s %s \n", i + 1, users.get(i).getNome(), users.get(i).getSobrenome());
                         }
 
                         System.out.println("Selecione o cliente: ");
                         int userOpcao = scan.nextInt();
-                        if (userOpcao == 1) {
-                            conta.setProprietario(users[userOpcao -1]);
-                            System.out.println("Digite o valor de deposito ->\n");
+                        if (userOpcao >= 0) {
+                            conta.setProprietario(users.get(userOpcao -1));
+                            System.out.println("Digite o valor de deposito ->");
                             contaBancaria1.depositar(scan.nextDouble());
                         } else {
                             System.out.println("Nenhum usuario cadastrado");
