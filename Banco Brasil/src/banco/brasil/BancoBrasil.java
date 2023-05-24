@@ -77,10 +77,11 @@ public class BancoBrasil {
         for(Gerente g : gerentes){
             if(g.getLogin().equals(login) && g.getPassword().equals(password)){
                 verificador = true;
-            }else{
-                System.out.println("Login ou Senha incorreta !");
             }
         }
+         //String notValidate = "", validate = "Usuario ou senha incorreto!";
+         //System.out.println("%s\n", verificador==true?"": "Usuario ou senha incorreto!");
+            System.out.printf("%s\n", verificador == true ? "": "Usuario ou senhas incorretos ! ");
         }while(verificador != true);
         
         while (opcao != 3) {
