@@ -2,7 +2,7 @@
 package banco.brasil;
 
 
-public class Gerente extends Usuario{
+public abstract class Gerente extends Usuario{
     private String login;
     private String password;
     
@@ -11,7 +11,9 @@ public class Gerente extends Usuario{
     }
 
     public Gerente(String login, String password, String nome, String sobrenome, String telefone) {
-        super(nome, sobrenome, telefone);
+        this.setNome(nome);
+        this.setSobenome(sobrenome);
+        this.setTelefone(telefone);
         this.login = login;
         this.password = password;
     }
@@ -30,6 +32,13 @@ public class Gerente extends Usuario{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public String imprimirInfo(){
+        return String.format("Informacoes do gerente \n"
+        + "Nome: %s %s\n"
+        +"Contato %s\n"
+        +"Login %s\n", this.getNome(), this.getSobrenome(), this.getTelefone(), this.getLogin());
     }
     
     
