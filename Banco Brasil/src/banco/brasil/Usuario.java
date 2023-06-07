@@ -2,24 +2,13 @@ package banco.brasil;
 
 import java.util.Date;
 
-public class Usuario {
+public abstract class Usuario {
 
     //Imprimir infomracoes dos usuarios
     private String nome;
     private String sobrenome;
     private String telefone;
     
-
-    //Metodo construtor
-    public Usuario() {
-
-    }
-
-    public Usuario(String nome, String sobrenome, String telefone) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.telefone = telefone;
-    }
 
     //Metodos gets
     public String getNome() {
@@ -49,8 +38,7 @@ public class Usuario {
 
     
 
-    public String imprimirInfo() {
-        return String.format("Nome:%s\nsobrenome: %s\nTelefone: %s \nData Registro: %s", this.nome, this.sobrenome, this.telefone);
+    public abstract String imprimirInfo();
 
-    }
+    
 }

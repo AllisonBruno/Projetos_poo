@@ -12,7 +12,10 @@ public class Cliente extends Usuario{
         
     }
     public Cliente(String nome, String sobrenome, String telefone) {
-        super(nome, sobrenome, telefone);
+        this.setSobenome(sobrenome);
+        this.setNome(nome);
+        this.setTelefone(telefone);
+        
     }
 
     
